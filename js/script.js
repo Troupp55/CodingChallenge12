@@ -1,12 +1,21 @@
 //U61753810
 
 d3.csv("mock_stock_data.csv").then(function(data) {
-    console.log("CSV Data Loaded:", data);  // Log the loaded data
+    console.log("Raw CSV Data:", data);  // Log the raw data
 
     data.forEach(function(d) {
         d.date = new Date(d.date);
         d.value = +d.value;
     });
+
+    // Check for NaN values in the parsed data
+    data.forEach(function(d) {
+        if (isNaN(d.date) || isNaN(d.value)) {
+            console.error("Invalid data:", d);
+        }
+    });
+
+    console.log("Parsed Data:", data);  // Log the parsed data
 
     const svg = d3.select("svg");
     const margin = { top: 20, right: 30, bottom: 30, left: 40 },
