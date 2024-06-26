@@ -1,1 +1,1 @@
-# CodingChallenge12
+This project is a simple web based tool that visualizes stock data using D3.js. It reads stock values from a CSV file and displays them in an interactive chart. Users can filter the data by stock name and view detailed information.
