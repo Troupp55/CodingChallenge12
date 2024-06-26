@@ -1,13 +1,17 @@
+//U61753810
+
 d3.csv("mock_stock_data.csv").then(function(data) {
+    console.log("CSV Data Loaded:", data);  // Log the loaded data
+
     data.forEach(function(d) {
         d.date = new Date(d.date);
         d.value = +d.value;
     });
 
     const svg = d3.select("svg");
-    const margin = {top: 20, right: 30, bottom: 30, left: 40},
-          width = +svg.attr("width") - margin.left - margin.right,
-          height = +svg.attr("height") - margin.top - margin.bottom;
+    const margin = { top: 20, right: 30, bottom: 30, left: 40 },
+        width = +svg.attr("width") - margin.left - margin.right,
+        height = +svg.attr("height") - margin.top - margin.bottom;
 
     const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
 
@@ -90,4 +94,6 @@ d3.csv("mock_stock_data.csv").then(function(data) {
             .attr("cx", d => x(d.date))
             .attr("cy", d => y(d.value));
     }
+}).catch(function(error) {
+    console.error("Error loading the CSV file:", error);  // Log any errors
 });
